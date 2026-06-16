@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard | Rio Jax</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%2300f5d4%22>A</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  body { cursor: auto; }
+  #cursor-dot, #cursor-ring { display: none; }
+  .modal-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(6,6,16,0.85);
+    backdrop-filter: blur(8px);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-box {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    width: 100%;
+    max-width: 680px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+  }
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .modal-title { font-family: var(--font-display); font-size: 0.85rem; font-weight: 700; letter-spacing: 0.08em; color: var(--accent); }
+  .modal-close { font-size: 1.2rem; color: var(--text-muted); cursor: pointer; line-height: 1; padding: 4px 8px; }
+  .modal-close:hover { color: var(--accent-3); }
+  .modal-footer { margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border); display: flex; gap: 10px; justify-content: flex-end; }
+  .sidebar-toggle-mobile {
+    display: none;
+    position: fixed;
+    bottom: 20px; left: 20px;
+    z-index: 200;
+    width: 44px; height: 44px;
+    background: var(--accent);
+    color: var(--bg);
+    border-radius: 12px;
+    font-size: 1.2rem;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  @media (max-width: 768px) {
+    .sidebar-toggle-mobile { display: flex; }
+    .admin-form-grid { grid-template-columns: 1fr !important; }
+  }
+  .panel-title { font-family: var(--font-display); font-size: 1rem; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 24px; color: var(--text); }
+</style>
+</head>
+<body>
+
+<!-- LOGIN PAGE -->
+<div id="admin-login-page">
+  <div class="bg-canvas">
+    <div class="cyber-grid"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+  </div>
+  <div class="admin-login-card" data-aos="zoom-in">
+    <div style="text-align:center; font-size:2.5rem; margin-bottom:16px;">🔐</div>
+    <div class="admin-login-title">RIO JAX</div>
+    <div class="admin-login-sub">// ADMIN DASHBOARD ACCESS</div>
+    <div id="admin-login-error" class="admin-error-msg"></div>
+    <form id="admin-login-form" novalidate>
+      <div class="form-group">
+        <label class="admin-label" for="admin-username">Username</label>
+        <input class="admin-input" type="text" id="admin-username" name="username" placeholder="admin" autocomplete="username" required>
+      </div>
+      <div class="form-group" style="margin-bottom:24px;">
+        <label class="admin-label" for="admin-password">Password</label>
+        <input class="admin-input" type="password" id="admin-password" name="password" placeholder="••••••••" autocomplete="current-password" required>
+      </div>
+      <button type="submit" class="admin-btn-primary" style="width:100%; padding:13px;">Access Dashboard →</button>
+    </form>
+    <p style="text-align:center; margin-top:20px; font-family:var(--font-mono); font-size:0.62rem; color:var(--text-dim);">Default: admin / admin123</p>
+  </div>
+</div>
+
+<!-- ADMIN APP -->
+<div id="admin-app" style="display:none;" class="admin-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="admin-sidebar" id="admin-sidebar">
+    <div class="admin-sidebar-header">
+      <div class="admin-brand">RIO JAX</div>
+      <div class="admin-brand-sub">// CMS Dashboard v2.0</div>
+    </div>
+    <nav class="admin-nav">
+      <div class="admin-nav-section-title">Overview</div>
+      <div class="admin-nav-item active" data-panel="dashboard"><span class="admin-nav-icon">📊</span> Dashboard</div>
+
+      <div class="admin-nav-section-title">Content</div>
+      <div class="admin-nav-item" data-panel="profile"><span class="admin-nav-icon">👤</span> Profile</div>
+      <div class="admin-nav-item" data-panel="skills"><span class="admin-nav-icon">⚡</span> Skills</div>
+      <div class="admin-nav-item" data-panel="projects"><span class="admin-nav-icon">💻</span> Projects</div>
+      <div class="admin-nav-item" data-panel="blogs"><span class="admin-nav-icon">📝</span> Blog Posts</div>
+      <div class="admin-nav-item" data-panel="certs"><span class="admin-nav-icon">🏅</span> Certifications</div>
+      <div class="admin-nav-item" data-panel="testimonials"><span class="admin-nav-icon">⭐</span> Testimonials</div>
+      <div class="admin-nav-item" data-panel="achievements"><span class="admin-nav-icon">🏆</span> Achievements</div>
+      <div class="admin-nav-item" data-panel="services"><span class="admin-nav-icon">🛠️</span> Services</div>
+      <div class="admin-nav-item" data-panel="repos"><span class="admin-nav-icon">🐙</span> GitHub Repos</div>
+
+      <div class="admin-nav-section-title">Communications</div>
+      <div class="admin-nav-item" data-panel="contacts"><span class="admin-nav-icon">✉️</span> Messages</div>
+
+      <div class="admin-nav-section-title">Configuration</div>
+      <div class="admin-nav-item" data-panel="seo"><span class="admin-nav-icon">🔍</span> SEO</div>
+      <div class="admin-nav-item" data-panel="settings"><span class="admin-nav-icon">⚙️</span> Settings</div>
+      <div class="admin-nav-item" data-panel="password"><span class="admin-nav-icon">🔑</span> Password</div>
+
+      <div class="admin-nav-section-title">Links</div>
+      <div class="admin-nav-item" onclick="window.open('index.html','_blank')"><span class="admin-nav-icon">🌐</span> View Site</div>
+    </nav>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <div class="admin-main">
+    <div class="admin-topbar">
+      <div class="admin-page-title" id="admin-page-title">Dashboard</div>
+      <div class="admin-topbar-actions">
+        <button class="theme-toggle" aria-label="Toggle theme" onclick="document.querySelector('.theme-toggle').click()"></button>
+        <button class="admin-logout-btn" onclick="adminLogout()">Logout ↗</button>
+      </div>
+    </div>
+
+    <div class="admin-content">
+
+      <!-- ── DASHBOARD ─────────────────────────────── -->
+      <div id="panel-dashboard" class="admin-panel active">
+        <div class="panel-title">Welcome back, <span style="color:var(--accent)">Rio Jax</span> 👋</div>
+        <div class="admin-stats-row" id="dash-stats"></div>
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <div class="admin-card-title">Quick Actions</div>
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap:10px;">
+            <button class="admin-btn-sm" onclick="document.querySelector('[data-panel=projects]').click()">+ Add Project</button>
+            <button class="admin-btn-sm" onclick="document.querySelector('[data-panel=blogs]').click()">+ New Blog Post</button>
+            <button class="admin-btn-sm" onclick="document.querySelector('[data-panel=skills]').click()">+ Add Skill</button>
+            <button class="admin-btn-sm" onclick="document.querySelector('[data-panel=contacts]').click()">📨 View Messages</button>
+            <button class="admin-btn-sm" onclick="window.open('index.html','_blank')">🌐 Preview Site</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PROFILE ───────────────────────────────── -->
+      <div id="panel-profile" class="admin-panel">
+        <div class="panel-title">Profile Management</div>
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <div class="admin-card-title">Personal Information</div>
+            <button class="admin-btn-primary" onclick="saveProfile()">Save Profile</button>
+          </div>
+          <div class="admin-form-grid" style="grid-template-columns:1fr 1fr; gap:16px;">
+            <div class="form-group"><label class="admin-label" for="pf-name">Full Name</label><input class="admin-input" id="pf-name" placeholder="Dharshan S"></div>
+            <div class="form-group"><label class="admin-label" for="pf-nickname">Nickname / Brand</label><input class="admin-input" id="pf-nickname" placeholder="Rio Jax"></div>
+            <div class="form-group"><label class="admin-label" for="pf-tagline">Tagline</label><input class="admin-input" id="pf-tagline" placeholder="Cyber Security Student & Web Developer"></div>
+            <div class="form-group"><label class="admin-label" for="pf-heroSubtitle">Hero Subtitle</label><input class="admin-input" id="pf-heroSubtitle" placeholder="Building Secure Digital Futures"></div>
+            <div class="form-group"><label class="admin-label" for="pf-email">Email</label><input class="admin-input" id="pf-email" type="email" placeholder="dharshan.rio13@gmail.com"></div>
+            <div class="form-group"><label class="admin-label" for="pf-instagram">Instagram Handle</label><input class="admin-input" id="pf-instagram" placeholder="mr_rio_jax"></div>
+            <div class="form-group"><label class="admin-label" for="pf-github">GitHub Username</label><input class="admin-input" id="pf-github" placeholder="dharshan-rio13"></div>
+            <div class="form-group"><label class="admin-label" for="pf-linkedin">LinkedIn URL</label><input class="admin-input" id="pf-linkedin" placeholder="https://linkedin.com/in/..."></div>
+            <div class="form-group"><label class="admin-label" for="pf-twitter">Twitter Handle</label><input class="admin-input" id="pf-twitter" placeholder="@handle"></div>
+            <div class="form-group"><label class="admin-label" for="pf-location">Location</label><input class="admin-input" id="pf-location" placeholder="India"></div>
+            <div class="form-group"><label class="admin-label" for="pf-availability">Availability Status</label><input class="admin-input" id="pf-availability" placeholder="Open to Opportunities"></div>
+            <div class="form-group"><label class="admin-label" for="pf-resumeUrl">Resume URL / Path</label><input class="admin-input" id="pf-resumeUrl" placeholder="assets/resume.pdf or https://..."></div>
+          </div>
+          <div class="form-group" style="margin-top:16px;"><label class="admin-label" for="pf-bio">Bio (Short)</label><textarea class="admin-textarea" id="pf-bio" rows="3"></textarea></div>
+          <div class="form-group"><label class="admin-label" for="pf-bioExtended">Extended Bio</label><textarea class="admin-textarea" id="pf-bioExtended" rows="4"></textarea></div>
+        </div>
+      </div>
+
+      <!-- ── SKILLS ────────────────────────────────── -->
+      <div id="panel-skills" class="admin-panel">
+        <div class="panel-title">Skills Management</div>
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <div class="admin-card-title">All Skills</div>
+            <button class="admin-btn-primary" onclick="openSkillModal()">+ Add Skill</button>
+          </div>
+          <div style="overflow-x:auto;">
+            <table class="admin-table">
+              <thead><tr><th>Skill</th><th>Category</th><th>Level</th><th>Featured</th><th>Actions</th></tr></thead>
+              <tbody id="skills-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PROJECTS ──────────────────────────────── -->
+      <div id="panel-projects" class="admin-panel">
+        <div class="panel-title">Projects Management</div>
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <div class="admin-card-title">All Projects</div>
+            <button class="admin-btn-primary" onclick="openProjectModal()">+ Add Project</button>
+          </div>
+          <div style="overflow-x:auto;">
+            <table class="admin-table">
+              <thead><tr><th>Title</th><th>Category</th><th>Status</th><th>Featured</th><th>Actions</th></tr></thead>
+              <tbody id="projects-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── BLOGS ─────────────────────────────────── -->
+      <div id="panel-blogs" class="admin-panel">
+        <div class="panel-title">Blog Management</div>
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <div class="admin-card-title">All Blog Posts</div>
+            <button class="admin-btn-primary" onclick="openBlogModal()">+ New Post</button>
+          </div>
+          <div style="overflow-x:auto;">
+            <table class="admin-table">
+              <thead><tr><th>Title</th><th>Category</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead>
+              <tbody id="blogs-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── CERTIFICATIONS ────────────────────────── -->
+      <div id="panel-certs" class="admin-panel">
+        <div class="panel-title">Certifications Management</div>
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <div class="admin-card-title">All Certifications</div>
+            <button class="admin-btn-primary" onclick="openCertModal()">+ Add Certification</button>
+          </div>
+          <div style="overflow-x:auto;">
+            <table class="admin-table">
+              <thead><tr><th>Title</th><th>Issuer</th><th>Date</th><th>Featured</th><th>Actions</th></tr></thead>
+              <tbody id="certs-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TESTIMONIALS ──────────────────────────── -->
+      <div id="panel-testimonials" class="admin-panel">
+        <div class="panel-title">Testimonials Management</div>
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <div class="admin-card-title">All Testimonials</div>
+            <button class="admin-btn-primary" onclick="openTestimonialModal()">+ Add Testimonial</button>
+          </div>
+          <div style="overflow-x:auto;">
+            <table class="admin-table">
+              <thead><tr><th>Name</th><th>Role</th><th>Rating</th><th>Actions</th></tr></thead>
+              <tbody id="testi-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── ACHIEVEMENTS ──────────────────────────── -->
+      <div id="panel-achievements" class="admin-panel">
+        <div class="panel-title">Achievements Management</div>
+        <div class="admin-card">
+          <div class="admin-card-header"><div class="admin-card-title">Add Achievement</div></div>
+          <div class="admin-form-grid" style="grid-template-columns:1fr 1fr; gap:16px;">
+            <div class="form-group"><label class="admin-label">Title</label><input class="admin-input" id="ach-title" placeholder="First CTF Completion"></div>
+            <div class="form-group"><label class="admin-label">Type</label>
+              <select class="admin-select" id="ach-type">
+                <option>Competition</option><option>Education</option><option>Achievement</option><option>Award</option><option>Hackathon</option><option>Event</option>
+              </select>
+            </div>
+            <div class="form-group"><label class="admin-label">Date</label><input class="admin-input" id="ach-date" placeholder="2024"></div>
+            <div class="form-group"><label class="admin-label">Icon (emoji)</label><input class="admin-input" id="ach-icon" placeholder="🏆"></div>
+          </div>
+          <div class="form-group"><label class="admin-label">Description</label><input class="admin-input" id="ach-desc" placeholder="Brief description of the achievement"></div>
+          <button class="admin-btn-primary" onclick="addAchievementInline()" style="margin-top:8px;">Add Achievement</button>
+        </div>
+        <div class="admin-card">
+          <div class="admin-card-title" style="margin-bottom:16px;">All Achievements</div>
+          <div style="overflow-x:auto;">
+            <table class="admin-table">
+              <thead><tr><th>Title</th><th>Type</th><th>Date</th><th>Actions</th></tr></thead>
+              <tbody id="ach-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SERVICES ───────────────────────────────── -->
+      <div id="panel-services" class="admin-panel">
+        <div class="panel-title">Services Management</div>
+        <div class="admin-card">
+          <div class="admin-card-header"><div class="admin-card-title">Add Service</div></div>
+          <div class="admin-form-grid" style="grid-template-columns:1fr 1fr; gap:16px;">
+            <div class="form-group"><label class="admin-label">Title</label><input class="admin-input" id="svc-title" placeholder="Web Development"></div>
+            <div class="form-group"><label class="admin-label">Icon (emoji)</label><input class="admin-input" id="svc-icon" placeholder="🌐"></div>
+            <div class="form-group"><label class="admin-label">Price</label><input class="admin-input" id="svc-price" placeholder="From ₹5,000"></div>
+          </div>
+          <div class="form-group"><label class="admin-label">Description</label><textarea class="admin-textarea" id="svc-desc" rows="2" placeholder="Service description..."></textarea></div>
+          <button class="admin-btn-primary" onclick="addServiceInline()" style="margin-top:8px;">Add Service</button>
+        </div>
+        <div class="admin-card">
+          <div class="admin-card-title" style="margin-bottom:16px;">Current Services</div>
+          <table class="admin-table">
+            <thead><tr><th>Title</th><th>Description</th><th>Price</th><th>Actions</th></tr></thead>
+            <tbody id="services-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ── GITHUB REPOS ──────────────────────────── -->
+      <div id="panel-repos" class="admin-panel">
+        <div class="panel-title">GitHub Repositories</div>
+        <div class="admin-card">
+          <div class="admin-card-header"><div class="admin-card-title">Add Repository</div></div>
+          <div class="admin-form-grid" style="grid-template-columns:1fr 1fr; gap:16px;">
+            <div class="form-group"><label class="admin-label">Repo Name</label><input class="admin-input" id="repo-name" placeholder="my-awesome-repo"></div>
+            <div class="form-group"><label class="admin-label">Language</label><input class="admin-input" id="repo-lang" placeholder="Python"></div>
+            <div class="form-group"><label class="admin-label">GitHub URL</label><input class="admin-input" id="repo-url" placeholder="https://github.com/..."></div>
+            <div class="form-group"><label class="admin-label">Stars</label><input class="admin-input" id="repo-stars" type="number" placeholder="0"></div>
+          </div>
+          <div class="form-group"><label class="admin-label">Description</label><input class="admin-input" id="repo-desc" placeholder="What this repo does..."></div>
+          <button class="admin-btn-primary" onclick="addRepoInline()" style="margin-top:8px;">Add Repository</button>
+        </div>
+        <div class="admin-card">
+          <div class="admin-card-title" style="margin-bottom:16px;">Current Repositories</div>
+          <div style="overflow-x:auto;">
+            <table class="admin-table">
+              <thead><tr><th>Name</th><th>Description</th><th>Language</th><th>Stars</th><th>Actions</th></tr></thead>
+              <tbody id="repos-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── CONTACTS ──────────────────────────────── -->
+      <div id="panel-contacts" class="admin-panel">
+        <div class="panel-title">Contact Messages</div>
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <div class="admin-card-title">Inbox</div>
+            <button class="admin-btn-sm" onclick="exportContacts()">📥 Export CSV</button>
+          </div>
+          <div style="overflow-x:auto;">
+            <table class="admin-table">
+              <thead><tr><th>Name</th><th>Email</th><th>Subject</th><th>Date</th><th>Actions</th></tr></thead>
+              <tbody id="contacts-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SEO ───────────────────────────────────── -->
+      <div id="panel-seo" class="admin-panel">
+        <div class="panel-title">SEO Settings</div>
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <div class="admin-card-title">Search Engine Optimization</div>
+            <button class="admin-btn-primary" onclick="saveSEO()">Save SEO</button>
+          </div>
+          <div class="form-group"><label class="admin-label" for="seo-siteTitle">Website Title</label><input class="admin-input" id="seo-siteTitle" placeholder="Rio Jax | Cyber Security & Web Developer"></div>
+          <div class="form-group"><label class="admin-label" for="seo-metaDesc">Meta Description (150–160 chars)</label><textarea class="admin-textarea" id="seo-metaDesc" rows="3"></textarea></div>
+          <div class="form-group"><label class="admin-label" for="seo-metaKeywords">Keywords (comma-separated)</label><input class="admin-input" id="seo-metaKeywords" placeholder="cyber security, web developer, python..."></div>
+          <div class="admin-card" style="margin-top:20px; background:rgba(0,245,212,0.03);">
+            <p style="font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted);">💡 Note: For full SEO changes to take effect on the live site, update meta tags in each HTML file's &lt;head&gt; and redeploy to Cloudflare Pages.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── SETTINGS ──────────────────────────────── -->
+      <div id="panel-settings" class="admin-panel">
+        <div class="panel-title">Website Settings</div>
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <div class="admin-card-title">General Settings</div>
+            <button class="admin-btn-primary" onclick="saveSettings()">Save Settings</button>
+          </div>
+          <div class="form-group"><label class="admin-label" for="settings-footerText">Footer Text</label><input class="admin-input" id="settings-footerText"></div>
+          <div style="display:flex; flex-direction:column; gap:14px; margin-top:16px;">
+            <label style="display:flex; align-items:center; gap:12px; cursor:pointer;">
+              <input type="checkbox" id="settings-showBlog"> <span style="font-size:0.88rem;">Show Blog Section</span>
+            </label>
+            <label style="display:flex; align-items:center; gap:12px; cursor:pointer;">
+              <input type="checkbox" id="settings-showTestimonials"> <span style="font-size:0.88rem;">Show Testimonials Section</span>
+            </label>
+            <label style="display:flex; align-items:center; gap:12px; cursor:pointer;">
+              <input type="checkbox" id="settings-showServices"> <span style="font-size:0.88rem;">Show Services Section</span>
+            </label>
+          </div>
+        </div>
+        <div class="admin-card" style="margin-top:16px;">
+          <div class="admin-card-title" style="margin-bottom:16px;">Theme</div>
+          <div style="display:flex; gap:12px;">
+            <button class="admin-btn-sm" onclick="document.documentElement.setAttribute('data-theme','dark'); RioJax.setTheme('dark');">🌙 Dark Mode</button>
+            <button class="admin-btn-sm" onclick="document.documentElement.setAttribute('data-theme','light'); RioJax.setTheme('light');">☀️ Light Mode</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PASSWORD ──────────────────────────────── -->
+      <div id="panel-password" class="admin-panel">
+        <div class="panel-title">Change Password</div>
+        <div class="admin-card" style="max-width:440px;">
+          <div class="admin-card-title" style="margin-bottom:20px;">Update Admin Password</div>
+          <div class="form-group"><label class="admin-label" for="pwd-current">Current Password</label><input class="admin-input" type="password" id="pwd-current" autocomplete="current-password"></div>
+          <div class="form-group"><label class="admin-label" for="pwd-new">New Password</label><input class="admin-input" type="password" id="pwd-new" autocomplete="new-password"></div>
+          <div class="form-group"><label class="admin-label" for="pwd-confirm">Confirm New Password</label><input class="admin-input" type="password" id="pwd-confirm" autocomplete="new-password"></div>
+          <button class="admin-btn-primary" onclick="changePassword()" style="margin-top:8px;">Update Password</button>
+        </div>
+      </div>
+
+    </div><!-- /admin-content -->
+  </div><!-- /admin-main -->
+
+</div><!-- /admin-app -->
+
+<!-- ═══════════ MODALS ═══════════ -->
+
+<!-- SKILL MODAL -->
+<div id="skill-modal" class="modal-overlay">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span class="modal-title" id="skill-modal-title">Add Skill</span>
+      <span class="modal-close" onclick="closeSkillModal()">✕</span>
+    </div>
+    <input type="hidden" id="skill-id">
+    <div class="admin-form-grid" style="grid-template-columns:1fr 1fr; gap:16px;">
+      <div class="form-group"><label class="admin-label">Skill Name *</label><input class="admin-input" id="skill-name" placeholder="Penetration Testing"></div>
+      <div class="form-group"><label class="admin-label">Category</label>
+        <select class="admin-select" id="skill-category">
+          <option>Cyber Security</option><option>Web Development</option><option>Python Development</option><option>Networking</option><option>Linux</option><option>Tools & Technologies</option>
+        </select>
+      </div>
+      <div class="form-group"><label class="admin-label">Level (0–100)</label><input class="admin-input" type="number" id="skill-level" min="0" max="100" value="70"></div>
+      <div class="form-group"><label class="admin-label">Icon (emoji)</label><input class="admin-input" id="skill-icon" placeholder="🛡️"></div>
+    </div>
+    <label style="display:flex; align-items:center; gap:10px; margin-top:10px; cursor:pointer;">
+      <input type="checkbox" id="skill-featured"> <span style="font-size:0.88rem;">Featured on homepage</span>
+    </label>
+    <div class="modal-footer">
+      <button class="admin-btn-sm" onclick="closeSkillModal()">Cancel</button>
+      <button class="admin-btn-primary" onclick="saveSkill()">Save Skill</button>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECT MODAL -->
+<div id="project-modal" class="modal-overlay">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span class="modal-title" id="proj-modal-title">Add Project</span>
+      <span class="modal-close" onclick="closeProjectModal()">✕</span>
+    </div>
+    <input type="hidden" id="proj-id">
+    <div class="admin-form-grid" style="grid-template-columns:1fr 1fr; gap:16px;">
+      <div class="form-group" style="grid-column:1/-1"><label class="admin-label">Project Title *</label><input class="admin-input" id="proj-title" placeholder="My Awesome Project"></div>
+      <div class="form-group"><label class="admin-label">Category</label>
+        <select class="admin-select" id="proj-category">
+          <option>Web Development</option><option>Cyber Security</option><option>Python Development</option><option>Networking</option><option>Other</option>
+        </select>
+      </div>
+      <div class="form-group"><label class="admin-label">Status</label>
+        <select class="admin-select" id="proj-status">
+          <option>Completed</option><option>In Progress</option><option>Planned</option>
+        </select>
+      </div>
+      <div class="form-group"><label class="admin-label">Year</label><input class="admin-input" id="proj-year" placeholder="2025"></div>
+      <div class="form-group"><label class="admin-label">GitHub URL</label><input class="admin-input" id="proj-github" placeholder="https://github.com/..."></div>
+      <div class="form-group"><label class="admin-label">Demo URL</label><input class="admin-input" id="proj-demo" placeholder="https://..."></div>
+      <div class="form-group"><label class="admin-label">Image URL</label><input class="admin-input" id="proj-image" placeholder="https://... or assets/..."></div>
+      <div class="form-group"><label class="admin-label">Tech Stack (comma-separated)</label><input class="admin-input" id="proj-techstack" placeholder="Python, JavaScript, ..."></div>
+    </div>
+    <div class="form-group" style="margin-top:12px;"><label class="admin-label">Description *</label><textarea class="admin-textarea" id="proj-description" rows="3" placeholder="Describe this project..."></textarea></div>
+    <label style="display:flex; align-items:center; gap:10px; margin-top:10px; cursor:pointer;">
+      <input type="checkbox" id="proj-featured"> <span style="font-size:0.88rem;">Featured project</span>
+    </label>
+    <div class="modal-footer">
+      <button class="admin-btn-sm" onclick="closeProjectModal()">Cancel</button>
+      <button class="admin-btn-primary" onclick="saveProject()">Save Project</button>
+    </div>
+  </div>
+</div>
+
+<!-- BLOG MODAL -->
+<div id="blog-modal" class="modal-overlay">
+  <div class="modal-box" style="max-width:780px;">
+    <div class="modal-header">
+      <span class="modal-title" id="blog-modal-title">New Blog Post</span>
+      <span class="modal-close" onclick="closeBlogModal()">✕</span>
+    </div>
+    <input type="hidden" id="blog-id">
+    <div class="admin-form-grid" style="grid-template-columns:1fr 1fr; gap:16px;">
+      <div class="form-group" style="grid-column:1/-1"><label class="admin-label">Title *</label><input class="admin-input" id="blog-title" placeholder="Blog post title..." oninput="generateSlug()"></div>
+      <div class="form-group"><label class="admin-label">Slug (URL)</label><input class="admin-input" id="blog-slug" placeholder="auto-generated-from-title"></div>
+      <div class="form-group"><label class="admin-label">Category</label>
+        <select class="admin-select" id="blog-category">
+          <option>Cyber Security</option><option>Web Development</option><option>Python Development</option><option>Linux</option><option>Networking</option><option>General</option>
+        </select>
+      </div>
+      <div class="form-group"><label class="admin-label">Tags (comma-separated)</label><input class="admin-input" id="blog-tags" placeholder="security, hacking, python"></div>
+      <div class="form-group"><label class="admin-label">Author</label><input class="admin-input" id="blog-author" placeholder="Rio Jax"></div>
+      <div class="form-group"><label class="admin-label">Date</label><input class="admin-input" type="date" id="blog-date"></div>
+      <div class="form-group"><label class="admin-label">Read Time</label><input class="admin-input" id="blog-readtime" placeholder="5 min read"></div>
+      <div class="form-group"><label class="admin-label">Cover Image URL</label><input class="admin-input" id="blog-cover" placeholder="https://..."></div>
+    </div>
+    <div class="form-group" style="margin-top:12px;"><label class="admin-label">Content (HTML supported)</label><textarea class="admin-textarea" id="blog-content" rows="10" placeholder="<h2>Intro</h2><p>Write your article here...</p>"></textarea></div>
+    <div style="display:flex; gap:24px; margin-top:10px;">
+      <label style="display:flex; align-items:center; gap:8px; cursor:pointer;"><input type="checkbox" id="blog-published"> <span style="font-size:0.88rem;">Published</span></label>
+      <label style="display:flex; align-items:center; gap:8px; cursor:pointer;"><input type="checkbox" id="blog-featured"> <span style="font-size:0.88rem;">Featured</span></label>
+    </div>
+    <div class="modal-footer">
+      <button class="admin-btn-sm" onclick="closeBlogModal()">Cancel</button>
+      <button class="admin-btn-primary" onclick="saveBlog()">Save Post</button>
+    </div>
+  </div>
+</div>
+
+<!-- CERT MODAL -->
+<div id="cert-modal" class="modal-overlay">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span class="modal-title">Certification</span>
+      <span class="modal-close" onclick="closeCertModal()">✕</span>
+    </div>
+    <input type="hidden" id="cert-id">
+    <div class="admin-form-grid" style="grid-template-columns:1fr 1fr; gap:16px;">
+      <div class="form-group"><label class="admin-label">Title *</label><input class="admin-input" id="cert-title" placeholder="Certification Title"></div>
+      <div class="form-group"><label class="admin-label">Issuer</label><input class="admin-input" id="cert-issuer" placeholder="Google, Coursera, ..."></div>
+      <div class="form-group"><label class="admin-label">Date</label><input class="admin-input" id="cert-date" placeholder="2024"></div>
+      <div class="form-group"><label class="admin-label">Credential ID</label><input class="admin-input" id="cert-credentialid" placeholder="ABC-2024"></div>
+      <div class="form-group" style="grid-column:1/-1"><label class="admin-label">Verify URL</label><input class="admin-input" id="cert-url" placeholder="https://..."></div>
+    </div>
+    <label style="display:flex; align-items:center; gap:10px; margin-top:12px; cursor:pointer;">
+      <input type="checkbox" id="cert-featured"> <span style="font-size:0.88rem;">Featured</span>
+    </label>
+    <div class="modal-footer">
+      <button class="admin-btn-sm" onclick="closeCertModal()">Cancel</button>
+      <button class="admin-btn-primary" onclick="saveCert()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIAL MODAL -->
+<div id="testi-modal" class="modal-overlay">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span class="modal-title">Testimonial</span>
+      <span class="modal-close" onclick="closeTestimonialModal()">✕</span>
+    </div>
+    <input type="hidden" id="testi-id">
+    <div class="admin-form-grid" style="grid-template-columns:1fr 1fr; gap:16px;">
+      <div class="form-group"><label class="admin-label">Name *</label><input class="admin-input" id="testi-name" placeholder="John Doe"></div>
+      <div class="form-group"><label class="admin-label">Role</label><input class="admin-input" id="testi-role" placeholder="Senior Developer"></div>
+      <div class="form-group"><label class="admin-label">Company</label><input class="admin-input" id="testi-company" placeholder="TechCorp"></div>
+      <div class="form-group"><label class="admin-label">Rating (1–5)</label><input class="admin-input" type="number" id="testi-rating" min="1" max="5" value="5"></div>
+    </div>
+    <div class="form-group" style="margin-top:12px;"><label class="admin-label">Testimonial Content *</label><textarea class="admin-textarea" id="testi-content" rows="4" placeholder="What they said..."></textarea></div>
+    <label style="display:flex; align-items:center; gap:10px; margin-top:10px; cursor:pointer;">
+      <input type="checkbox" id="testi-featured"> <span style="font-size:0.88rem;">Featured</span>
+    </label>
+    <div class="modal-footer">
+      <button class="admin-btn-sm" onclick="closeTestimonialModal()">Cancel</button>
+      <button class="admin-btn-primary" onclick="saveTestimonial()">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT VIEW MODAL -->
+<div id="contact-view-modal" class="modal-overlay">
+  <div class="modal-box">
+    <div class="modal-header">
+      <span class="modal-title">Message Details</span>
+      <span class="modal-close" onclick="closeContactModal()">✕</span>
+    </div>
+    <div id="contact-view-body"></div>
+    <div class="modal-footer">
+      <button class="admin-btn-sm" onclick="closeContactModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- MOBILE SIDEBAR TOGGLE -->
+<button class="sidebar-toggle-mobile" onclick="document.getElementById('admin-sidebar').classList.toggle('open')">☰</button>
+
+<div id="toast-container"></div>
+
+<script src="js/data.js"></script>
+<script src="js/admin.js"></script>
+<script>
+  // Apply saved theme
+  document.documentElement.setAttribute('data-theme', RioJax.getTheme());
+</script>
+</body>
+</html>

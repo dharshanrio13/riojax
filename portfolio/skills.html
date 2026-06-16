@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skills | Rio Jax</title>
+<meta name="description" content="Technical skills of Dharshan S (Rio Jax) across cybersecurity, web development, Python, networking, and Linux.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%2300f5d4%22>R</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+</head>
+<body class="loading">
+
+<div id="preloader">
+  <div class="preloader-logo">RIO<span>JAX</span></div>
+  <div class="preloader-bar"></div>
+  <div class="preloader-text">LOADING SKILL MATRIX...</div>
+</div>
+
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+<div id="scroll-progress"></div>
+
+<div class="bg-canvas">
+  <div class="cyber-grid"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+<canvas id="particles-canvas"></canvas>
+<canvas id="matrix-canvas"></canvas>
+<button id="matrix-exit">✕ Exit Matrix Mode</button>
+
+<header id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">RIO<span>JAX</span></a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-actions">
+      <button class="cmd-btn" aria-label="Open command palette">🔍 Search <span class="cmd-kbd">Ctrl K</span></button>
+      <button class="theme-toggle" aria-label="Toggle theme"></button>
+      <div class="nav-hamburger" id="nav-hamburger"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</header>
+
+<div id="nav-overlay"></div>
+<nav id="mobile-nav">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="skills.html">Skills</a>
+  <a href="projects.html">Projects</a>
+  <a href="blog.html">Blog</a>
+  <a href="resume.html">Resume</a>
+  <a href="contact.html">Contact</a>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <span class="page-hero-tag" data-aos="fade-up">// Technical Arsenal</span>
+    <h1 class="page-hero-title" data-aos="fade-up" data-aos-delay="100">My <span class="gradient-text">Skills</span></h1>
+    <p class="page-hero-desc" data-aos="fade-up" data-aos-delay="200">A comprehensive overview of my technical capabilities across security, development, and systems.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:20px;">
+  <div class="container">
+    <div id="skills-categories"></div>
+  </div>
+</section>
+
+<!-- TOOLS & TECHNOLOGIES -->
+<section class="section" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <div class="section-tag">Arsenal</div>
+      <h2 class="section-title">Tools &amp; <span class="accent">Technologies</span></h2>
+      <p class="section-desc">The tools I rely on every day.</p>
+    </div>
+    <div class="services-grid">
+      <div class="glass-card service-card" data-aos="fade-up" data-aos-delay="0"><div class="service-icon-wrap">🐧</div><div class="service-title">Linux</div><p class="service-desc">Mint, Ubuntu, Kali — daily driver for development and security work.</p></div>
+      <div class="glass-card service-card" data-aos="fade-up" data-aos-delay="50"><div class="service-icon-wrap">🐍</div><div class="service-title">Python</div><p class="service-desc">Automation, scripting, security tooling, and data processing.</p></div>
+      <div class="glass-card service-card" data-aos="fade-up" data-aos-delay="100"><div class="service-icon-wrap">🌐</div><div class="service-title">HTML / CSS / JS</div><p class="service-desc">Modern web development with semantic, accessible code.</p></div>
+      <div class="glass-card service-card" data-aos="fade-up" data-aos-delay="150"><div class="service-icon-wrap">🎨</div><div class="service-title">Tailwind CSS</div><p class="service-desc">Rapid, utility-first UI development.</p></div>
+      <div class="glass-card service-card" data-aos="fade-up" data-aos-delay="200"><div class="service-icon-wrap">🔧</div><div class="service-title">Git &amp; GitHub</div><p class="service-desc">Version control and collaborative development workflows.</p></div>
+      <div class="glass-card service-card" data-aos="fade-up" data-aos-delay="250"><div class="service-icon-wrap">📡</div><div class="service-title">Networking Tools</div><p class="service-desc">Wireshark, Nmap, and protocol analysis utilities.</p></div>
+      <div class="glass-card service-card" data-aos="fade-up" data-aos-delay="300"><div class="service-icon-wrap">🛡️</div><div class="service-title">Security Tools</div><p class="service-desc">Kali Linux, Metasploit, Burp Suite for security testing.</p></div>
+      <div class="glass-card service-card" data-aos="fade-up" data-aos-delay="350"><div class="service-icon-wrap">💾</div><div class="service-title">VS Code</div><p class="service-desc">Primary development environment with extensive customization.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">RIO JAX</div>
+        <p class="footer-brand-desc" data-profile-bio></p>
+        <div class="footer-socials">
+          <a href="#" data-profile-instagram target="_blank" rel="noopener" class="social-link" aria-label="Instagram">📷</a>
+          <a href="#" data-profile-github target="_blank" rel="noopener" class="social-link" aria-label="GitHub">🐙</a>
+          <a href="#" data-profile-email class="social-link" aria-label="Email">✉️</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigate</div>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="skills.html">Skills</a></li>
+          <li><a href="projects.html">Projects</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Resources</div>
+        <ul class="footer-links">
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="resume.html">Resume</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="admin.html">Admin</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Get In Touch</div>
+        <ul class="footer-links">
+          <li><a href="#" data-profile-email>email</a></li>
+          <li><a href="#" data-profile-instagram target="_blank" rel="noopener">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy" data-footer-text></div>
+      <div class="footer-built">Press <span class="cmd-kbd">Ctrl K</span> to search</div>
+    </div>
+  </div>
+</footer>
+
+<button id="back-to-top" aria-label="Back to top">↑</button>
+
+<div id="cmd-overlay">
+  <div id="cmd-modal">
+    <div class="cmd-header">
+      <span class="cmd-search-icon">🔍</span>
+      <input id="cmd-input" type="text" placeholder="Search pages, projects, skills..." autocomplete="off">
+      <span class="cmd-kbd">ESC</span>
+    </div>
+    <div id="cmd-results"></div>
+  </div>
+</div>
+
+<div id="toast-container"></div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/render.js"></script>
+</body>
+</html>

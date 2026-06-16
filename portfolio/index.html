@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rio Jax | Cyber Security & Web Developer</title>
+<meta name="description" content="Portfolio of Dharshan S (Rio Jax) — Cyber Security Student, Web Developer, Python Developer, and Tech Enthusiast.">
+<meta name="keywords" content="cyber security, web developer, python, linux, networking, portfolio, dharshan, rio jax">
+<meta name="author" content="Dharshan S (Rio Jax)">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Rio Jax | Cyber Security & Web Developer">
+<meta property="og:description" content="Portfolio of Dharshan S (Rio Jax) — Cyber Security Student, Web Developer, Python Developer, and Tech Enthusiast.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Rio Jax | Cyber Security & Web Developer">
+<meta name="twitter:description" content="Portfolio of Dharshan S (Rio Jax) — Cyber Security Student, Web Developer, Python Developer, and Tech Enthusiast.">
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%2300f5d4%22>R</text></svg>">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Dharshan S",
+  "alternateName": "Rio Jax",
+  "jobTitle": "Cyber Security Student & Web Developer",
+  "email": "dharshan.rio13@gmail.com",
+  "sameAs": ["https://instagram.com/mr_rio_jax"]
+}
+</script>
+</head>
+<body class="loading">
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="preloader-logo">RIO<span>JAX</span></div>
+  <div class="preloader-bar"></div>
+  <div class="preloader-text">INITIALIZING SYSTEM...</div>
+</div>
+
+<!-- CUSTOM CURSOR -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<!-- SCROLL PROGRESS -->
+<div id="scroll-progress"></div>
+
+<!-- BACKGROUND -->
+<div class="bg-canvas">
+  <div class="cyber-grid"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+<canvas id="particles-canvas"></canvas>
+
+<!-- MATRIX EASTER EGG -->
+<canvas id="matrix-canvas"></canvas>
+<button id="matrix-exit">✕ Exit Matrix Mode</button>
+
+<!-- NAVBAR -->
+<header id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">RIO<span>JAX</span></a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-actions">
+      <button class="cmd-btn" aria-label="Open command palette">🔍 Search <span class="cmd-kbd">Ctrl K</span></button>
+      <button class="theme-toggle" aria-label="Toggle theme"></button>
+      <div class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<div id="nav-overlay"></div>
+<nav id="mobile-nav">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="skills.html">Skills</a>
+  <a href="projects.html">Projects</a>
+  <a href="blog.html">Blog</a>
+  <a href="resume.html">Resume</a>
+  <a href="contact.html">Contact</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="availability-badge" data-aos="fade-up"><span class="availability-dot"></span><span data-hero-availability>Open to Opportunities</span></div>
+      <div class="hero-eyebrow" data-aos="fade-up">
+        <div class="hero-eyebrow-line"></div>
+        <div class="hero-eyebrow-text" data-hero-nickname>aka Rio Jax</div>
+      </div>
+      <h1 class="hero-name" data-aos="fade-up" data-aos-delay="100">
+        Hi, I'm <span class="gradient-text" data-hero-name>Dharshan S</span>
+      </h1>
+      <div class="hero-typing-wrapper" data-aos="fade-up" data-aos-delay="200">
+        <span class="hero-typing-prefix">&gt;</span>
+        <span id="hero-typed"></span><span class="typing-cursor"></span>
+      </div>
+      <p class="hero-bio" data-aos="fade-up" data-aos-delay="300" data-hero-bio></p>
+      <div class="hero-actions" data-aos="fade-up" data-aos-delay="400">
+        <a href="projects.html" class="btn-primary" data-magnetic>View My Work</a>
+        <a href="contact.html" class="btn-secondary" data-magnetic>Get In Touch</a>
+      </div>
+      <div class="hero-stats" id="hero-stats" data-aos="fade-up" data-aos-delay="500"></div>
+    </div>
+  </div>
+  <div class="hero-scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-mouse"></div>
+  </div>
+</section>
+
+<!-- ABOUT PREVIEW -->
+<section class="section" id="about-preview">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-avatar-wrap gsap-fade" data-aos="fade-right">
+        <div class="about-avatar-frame">
+          <div class="about-avatar-placeholder">👤</div>
+        </div>
+        <div class="about-corner-tag">
+          <div class="about-corner-tag-label">Status</div>
+          <div class="about-corner-tag-value">// Building the Future</div>
+        </div>
+      </div>
+      <div class="about-content gsap-fade" data-aos="fade-left">
+        <div class="section-tag">About Me</div>
+        <h2>Engineering Secure Systems, <span class="gradient-text">One Line at a Time</span></h2>
+        <p data-profile-bio></p>
+        <p data-profile-bio-extended></p>
+        <a href="about.html" class="btn-secondary" data-magnetic style="margin-top:8px;">Read Full Story →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS PREVIEW -->
+<section class="section" id="skills-preview" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <div class="section-tag">What I Do</div>
+      <h2 class="section-title">Core <span class="accent">Skills</span></h2>
+      <p class="section-desc">A blend of security expertise, development skills, and systems knowledge.</p>
+    </div>
+    <div class="skills-grid" id="skills-preview-grid"></div>
+    <div style="text-align:center; margin-top:40px;">
+      <a href="skills.html" class="btn-secondary" data-magnetic>View All Skills →</a>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <div class="section-tag">Career</div>
+      <h2 class="section-title">Work <span class="accent">Experience</span></h2>
+      <p class="section-desc">My professional journey so far.</p>
+    </div>
+    <div class="timeline" id="experience-timeline" style="max-width:700px; margin:0 auto;"></div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="section" id="education" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <div class="section-tag">Academics</div>
+      <h2 class="section-title">Education <span class="accent">Journey</span></h2>
+      <p class="section-desc">Building the academic foundation for a cybersecurity career.</p>
+    </div>
+    <div class="timeline" id="education-timeline" style="max-width:700px; margin:0 auto;"></div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="section" id="certifications">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <div class="section-tag">Credentials</div>
+      <h2 class="section-title">Certifications &amp; <span class="accent">Badges</span></h2>
+      <p class="section-desc">Verified skills and continuous learning achievements.</p>
+    </div>
+    <div class="certs-grid" data-certs-grid="featured"></div>
+  </div>
+</section>
+
+<!-- FEATURED PROJECTS -->
+<section class="section" id="featured-projects" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <div class="section-tag">Portfolio</div>
+      <h2 class="section-title">Featured <span class="accent">Projects</span></h2>
+      <p class="section-desc">A selection of my recent work across security and development.</p>
+    </div>
+    <div class="projects-grid" data-projects-grid="featured"></div>
+    <div style="text-align:center; margin-top:40px;">
+      <a href="projects.html" class="btn-secondary" data-magnetic>View All Projects →</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <div class="section-tag">What I Offer</div>
+      <h2 class="section-title">Services &amp; <span class="accent">Offerings</span></h2>
+      <p class="section-desc">Ways I can help bring your project to life.</p>
+    </div>
+    <div class="services-grid" id="services-grid"></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section" id="testimonials" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <div class="section-tag">Feedback</div>
+      <h2 class="section-title">What People <span class="accent">Say</span></h2>
+      <p class="section-desc">Testimonials from collaborators and clients.</p>
+    </div>
+    <div class="services-grid" id="testimonials-grid"></div>
+  </div>
+</section>
+
+<!-- BLOG PREVIEW -->
+<section class="section" id="blog-preview">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <div class="section-tag">Writing</div>
+      <h2 class="section-title">Latest from the <span class="accent">Blog</span></h2>
+      <p class="section-desc">Thoughts on security, development, and technology.</p>
+    </div>
+    <div class="blog-grid" id="blog-preview-grid"></div>
+    <div style="text-align:center; margin-top:40px;">
+      <a href="blog.html" class="btn-secondary" data-magnetic>Read All Posts →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT CTA -->
+<section class="section" id="contact-cta" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="glass-card" style="padding:60px 40px; text-align:center; position:relative; overflow:hidden;" data-aos="zoom-in">
+      <div class="section-tag">Let's Connect</div>
+      <h2 class="section-title">Got a Project in <span class="accent">Mind?</span></h2>
+      <p class="section-desc" style="margin-bottom:32px;">I'm always open to discussing new projects, creative ideas, or opportunities to collaborate.</p>
+      <a href="contact.html" class="btn-primary" data-magnetic>Start a Conversation</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">RIO JAX</div>
+        <p class="footer-brand-desc" data-profile-bio></p>
+        <div class="footer-socials">
+          <a href="#" data-profile-instagram target="_blank" rel="noopener" class="social-link" aria-label="Instagram">📷</a>
+          <a href="#" data-profile-github target="_blank" rel="noopener" class="social-link" aria-label="GitHub">🐙</a>
+          <a href="#" data-profile-email class="social-link" aria-label="Email">✉️</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigate</div>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="skills.html">Skills</a></li>
+          <li><a href="projects.html">Projects</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Resources</div>
+        <ul class="footer-links">
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="resume.html">Resume</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="admin.html">Admin</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Get In Touch</div>
+        <ul class="footer-links">
+          <li><a href="#" data-profile-email>email</a></li>
+          <li><a href="#" data-profile-instagram target="_blank" rel="noopener">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy" data-footer-text></div>
+      <div class="footer-built">Press <span class="cmd-kbd">Ctrl K</span> to search <span class="accent">·</span> Try the Konami Code 👀</div>
+    </div>
+  </div>
+</footer>
+
+<!-- BACK TO TOP -->
+<button id="back-to-top" aria-label="Back to top">↑</button>
+
+<!-- COMMAND PALETTE -->
+<div id="cmd-overlay">
+  <div id="cmd-modal">
+    <div class="cmd-header">
+      <span class="cmd-search-icon">🔍</span>
+      <input id="cmd-input" type="text" placeholder="Search pages, projects, skills..." autocomplete="off">
+      <span class="cmd-kbd">ESC</span>
+    </div>
+    <div id="cmd-results"></div>
+  </div>
+</div>
+
+<!-- TOAST CONTAINER -->
+<div id="toast-container"></div>
+
+<!-- SCRIPTS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/render.js"></script>
+</body>
+</html>

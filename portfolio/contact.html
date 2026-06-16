@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | Rio Jax</title>
+<meta name="description" content="Get in touch with Dharshan S (Rio Jax) — for projects, collaborations, or just to say hello.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%2300f5d4%22>R</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+</head>
+<body class="loading">
+
+<div id="preloader">
+  <div class="preloader-logo">RIO<span>JAX</span></div>
+  <div class="preloader-bar"></div>
+  <div class="preloader-text">ESTABLISHING CONNECTION...</div>
+</div>
+
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+<div id="scroll-progress"></div>
+
+<div class="bg-canvas">
+  <div class="cyber-grid"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+<canvas id="particles-canvas"></canvas>
+<canvas id="matrix-canvas"></canvas>
+<button id="matrix-exit">✕ Exit Matrix Mode</button>
+
+<header id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">RIO<span>JAX</span></a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-actions">
+      <button class="cmd-btn" aria-label="Open command palette">🔍 Search <span class="cmd-kbd">Ctrl K</span></button>
+      <button class="theme-toggle" aria-label="Toggle theme"></button>
+      <div class="nav-hamburger" id="nav-hamburger"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</header>
+
+<div id="nav-overlay"></div>
+<nav id="mobile-nav">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="skills.html">Skills</a>
+  <a href="projects.html">Projects</a>
+  <a href="blog.html">Blog</a>
+  <a href="resume.html">Resume</a>
+  <a href="contact.html">Contact</a>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <span class="page-hero-tag" data-aos="fade-up">// Let's Talk</span>
+    <h1 class="page-hero-title" data-aos="fade-up" data-aos-delay="100">Get In <span class="gradient-text">Touch</span></h1>
+    <p class="page-hero-desc" data-aos="fade-up" data-aos-delay="200">Have a project, idea, or just want to connect? I'd love to hear from you.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:20px;">
+  <div class="container">
+    <div class="contact-grid">
+
+      <!-- LEFT: Info -->
+      <div data-aos="fade-right">
+        <div class="contact-info-title">Let's Build Something <span class="gradient-text">Together</span></div>
+        <p class="contact-info-desc">I'm currently open to freelance work, collaborations, and interesting opportunities. Whether you need a website, a Python script, or a security review — reach out and let's talk.</p>
+
+        <div id="contact-info-items"></div>
+
+        <div style="margin-top:28px;">
+          <div class="form-label" style="margin-bottom:14px;">Find me on</div>
+          <div class="footer-socials">
+            <a href="#" data-profile-instagram target="_blank" rel="noopener" class="social-link" aria-label="Instagram" title="Instagram">📷</a>
+            <a href="#" data-profile-github target="_blank" rel="noopener" class="social-link" aria-label="GitHub" title="GitHub">🐙</a>
+            <a href="#" data-profile-email class="social-link" aria-label="Email" title="Email">✉️</a>
+          </div>
+        </div>
+
+        <!-- Security dashboard mini -->
+        <div class="glass-card" style="margin-top:32px; padding:24px;" data-aos="fade-up" data-aos-delay="200">
+          <div class="admin-card-title" style="margin-bottom:16px;">// System Status</div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.72rem;">
+              <span style="color:var(--text-muted);">Response Time</span>
+              <span style="color:var(--accent);">Usually within 24h</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.72rem;">
+              <span style="color:var(--text-muted);">Status</span>
+              <span class="admin-badge success">Available</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.72rem;">
+              <span style="color:var(--text-muted);">Open to Work</span>
+              <span class="admin-badge success">Yes</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-family:var(--font-mono); font-size:0.72rem;">
+              <span style="color:var(--text-muted);">Location</span>
+              <span style="color:var(--text-muted);">India 🇮🇳</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Form -->
+      <div data-aos="fade-left">
+        <div class="glass-card contact-form-wrapper">
+          <form
+            id="contact-form"
+            name="contact"
+            method="POST"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
+            novalidate
+          >
+            <!-- Netlify form detection -->
+            <input type="hidden" name="form-name" value="contact">
+
+            <!-- Honeypot field — hidden from real users -->
+            <div class="honeypot" aria-hidden="true">
+              <label>Don't fill this out: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="contact-name">Full Name *</label>
+                <input class="form-input" type="text" id="contact-name" name="name" placeholder="Dharshan S" required autocomplete="name" aria-required="true">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="contact-email">Email Address *</label>
+                <input class="form-input" type="email" id="contact-email" name="email" placeholder="you@example.com" required autocomplete="email" aria-required="true">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="contact-phone">Phone Number</label>
+                <input class="form-input" type="tel" id="contact-phone" name="phone" placeholder="+91 XXXXX XXXXX" autocomplete="tel">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="contact-subject">Subject *</label>
+                <select class="form-select" id="contact-subject" name="subject" required aria-required="true">
+                  <option value="" disabled selected>Select a subject</option>
+                  <option value="Web Development Project">Web Development Project</option>
+                  <option value="Security Audit">Security Audit</option>
+                  <option value="Python Scripting">Python Scripting</option>
+                  <option value="Collaboration">Collaboration</option>
+                  <option value="Just Saying Hello">Just Saying Hello</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="contact-message">Message *</label>
+              <textarea class="form-textarea" id="contact-message" name="message" placeholder="Tell me about your project or idea..." required aria-required="true"></textarea>
+            </div>
+
+            <button type="submit" id="form-submit-btn" class="btn-primary form-submit-btn" data-magnetic>
+              Send Message ✉️
+            </button>
+          </form>
+
+          <div id="form-success" class="form-success">
+            <div class="form-success-icon">✅</div>
+            <div class="form-success-title">Message Received!</div>
+            <p style="color:var(--text-muted); font-size:0.88rem;">Thanks for reaching out! I'll get back to you within 24 hours.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FAQ / Security note -->
+<section class="section" style="background:var(--bg-2);">
+  <div class="container">
+    <div class="section-header" data-aos="fade-up">
+      <div class="section-tag">FAQ</div>
+      <h2 class="section-title">Common <span class="accent">Questions</span></h2>
+    </div>
+    <div class="services-grid">
+      <div class="glass-card service-card" data-aos="fade-up" data-aos-delay="0">
+        <div class="service-icon-wrap">💼</div>
+        <div class="service-title">Freelance Work</div>
+        <p class="service-desc">Yes, I'm available for freelance projects! Websites, automation scripts, and security reviews are all in scope.</p>
+      </div>
+      <div class="glass-card service-card" data-aos="fade-up" data-aos-delay="80">
+        <div class="service-icon-wrap">⏱️</div>
+        <div class="service-title">Project Timeline</div>
+        <p class="service-desc">Simple websites: 1–2 weeks. Complex applications: 3–6 weeks. I'll give a detailed estimate after discussing your needs.</p>
+      </div>
+      <div class="glass-card service-card" data-aos="fade-up" data-aos-delay="160">
+        <div class="service-icon-wrap">🌍</div>
+        <div class="service-title">Remote Work</div>
+        <p class="service-desc">Fully remote and comfortable with async communication. Tools: GitHub, Discord, Notion, and email.</p>
+      </div>
+      <div class="glass-card service-card" data-aos="fade-up" data-aos-delay="240">
+        <div class="service-icon-wrap">🔐</div>
+        <div class="service-title">Confidentiality</div>
+        <p class="service-desc">Happy to sign NDAs for sensitive projects. Your data and project details stay private.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">RIO JAX</div>
+        <p class="footer-brand-desc" data-profile-bio></p>
+        <div class="footer-socials">
+          <a href="#" data-profile-instagram target="_blank" rel="noopener" class="social-link" aria-label="Instagram">📷</a>
+          <a href="#" data-profile-github target="_blank" rel="noopener" class="social-link" aria-label="GitHub">🐙</a>
+          <a href="#" data-profile-email class="social-link" aria-label="Email">✉️</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigate</div>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="skills.html">Skills</a></li>
+          <li><a href="projects.html">Projects</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Resources</div>
+        <ul class="footer-links">
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="resume.html">Resume</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="admin.html">Admin</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Get In Touch</div>
+        <ul class="footer-links">
+          <li><a href="#" data-profile-email>email</a></li>
+          <li><a href="#" data-profile-instagram target="_blank" rel="noopener">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy" data-footer-text></div>
+      <div class="footer-built">Press <span class="cmd-kbd">Ctrl K</span> to search</div>
+    </div>
+  </div>
+</footer>
+
+<button id="back-to-top" aria-label="Back to top">↑</button>
+
+<div id="cmd-overlay">
+  <div id="cmd-modal">
+    <div class="cmd-header">
+      <span class="cmd-search-icon">🔍</span>
+      <input id="cmd-input" type="text" placeholder="Search pages, projects, skills..." autocomplete="off">
+      <span class="cmd-kbd">ESC</span>
+    </div>
+    <div id="cmd-results"></div>
+  </div>
+</div>
+
+<div id="toast-container"></div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/render.js"></script>
+<script src="js/contact.js"></script>
+</body>
+</html>
